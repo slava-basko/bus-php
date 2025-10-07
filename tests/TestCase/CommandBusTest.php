@@ -7,7 +7,9 @@ use Basko\Bus\CommandBus;
 use Basko\Bus\Exception\LockException;
 use Basko\Bus\Exception\NoHandlerException;
 use Basko\Bus\Handler\PlusCommandHandler;
+use Basko\Bus\Middleware\CommandHandlerMiddleware;
 use Basko\Bus\Middleware\LockingMiddleware;
+use Basko\Bus\Middleware\PlusMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class CommandBusTest extends TestCase
@@ -55,5 +57,19 @@ class CommandBusTest extends TestCase
                 $lockException->getMessage()
             );
         }
+    }
+
+    public function testMiddleware()
+    {
+        $bus = new CommandBus([
+            new PlusMiddleware(1),
+            new PlusMiddleware(2),
+            new CommandHandlerMiddleware([
+                PlusCommand::class => new PlusCommandHandler(),
+            ])
+        ]);
+
+        $result = $bus->handle(new PlusCommand(1));
+        $this->assertEquals(5, $result);
     }
 }

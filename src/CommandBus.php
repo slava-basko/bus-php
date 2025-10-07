@@ -21,7 +21,7 @@ final class CommandBus
             return null; // final, noop
         };
 
-        foreach ($middlewares as $middleware) {
+        foreach (\array_reverse($middlewares) as $middleware) {
             if (!($middleware instanceof Middleware)) {
                 throw new \InvalidArgumentException(\sprintf(
                     "Param \$middlewares of %s must be array of %s",
