@@ -5,7 +5,7 @@ namespace Basko\Bus\Middleware;
 use Basko\Bus\Exception\LockException;
 use Basko\Bus\Middleware;
 
-final class LockingMiddleware implements Middleware
+class LockingMiddleware implements Middleware
 {
     /**
      * @var bool

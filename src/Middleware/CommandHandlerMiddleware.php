@@ -6,7 +6,7 @@ use Basko\Bus\Exception\NoHandlerException;
 use Basko\Bus\HandlerInterface;
 use Basko\Bus\Middleware;
 
-final class CommandHandlerMiddleware implements Middleware
+class CommandHandlerMiddleware implements Middleware
 {
     /**
      * @var array<class-string, \Basko\Bus\HandlerInterface>
