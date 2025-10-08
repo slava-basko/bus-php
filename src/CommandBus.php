@@ -5,7 +5,7 @@ namespace Basko\Bus;
 use Basko\Bus\Middleware\CommandHandlerMiddleware;
 use Basko\Bus\Middleware\LockingMiddleware;
 
-final class CommandBus
+final class CommandBus implements CommandBusInterface
 {
     /**
      * @var callable(object $command):mixed
